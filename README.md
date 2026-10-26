@@ -14,6 +14,8 @@ No account. No email. No credit card. No bot limit. No server bill. No lock-in.
 > **Settings → Pages → Build and deployment → Source: _GitHub Actions_**
 >
 > That takes 10 seconds. The included workflow (`.github/workflows/pages.yml`) then publishes the site to **https://arslanansari1629-blip.github.io/AI/** on every push, and retries automatically every 6 hours — no further action needed.
+>
+> **Want to preview right now, without touching settings?** Clone the repo and run `python3 -m http.server 8080` in its folder, then open `http://localhost:8080`. Any static host works — Netlify Drop, Vercel, Cloudflare Pages, or even a USB stick.
 
 ---
 
