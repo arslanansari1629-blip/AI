@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>BotForge — Free Telegram Bot Hosting, No Login, Unlimited</title>
+  <meta name="description" content="BotForge is a zero-signup Telegram bot platform. Build bots visually, test them live, run them in your browser, and deploy to free serverless hosts forever. No account, no limits, no credit card." />
+  <meta name="theme-color" content="#05060a" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="keywords" content="telegram bot hosting, free telegram bot, telegram bot builder, no login, cloudflare worker, deno deploy, serverless telegram bot" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="BotForge — Free Telegram Bot Hosting. No Login. Unlimited." />
+  <meta property="og:description" content="Visual Telegram bot builder + in-browser runtime + one-click serverless deploys. Free forever, no account required." />
+  <meta property="og:site_name" content="BotForge" />
+  <meta property="og:image" content="https://arslanansari1629-blip.github.io/AI/assets/img/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="BotForge — free Telegram bot hosting with no login" />
+  <meta property="og:url" content="https://arslanansari1629-blip.github.io/AI/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://arslanansari1629-blip.github.io/AI/assets/img/og.png" />
+  <meta name="twitter:title" content="BotForge — Free Telegram Bot Hosting. No Login. Unlimited." />
+  <meta name="twitter:description" content="Visual Telegram bot builder, in-browser runtime and one-click free serverless deploys. No account needed." />
+  <link rel="canonical" href="https://arslanansari1629-blip.github.io/AI/" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/app.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BotForge",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Zero-signup Telegram bot builder, browser runtime and free serverless deploy kit."
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#view">Skip to content</a>
+
+  <div class="bg-fx" aria-hidden="true">
+    <canvas id="bgCanvas"></canvas>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+    <div class="noise"></div>
+  </div>
+
+  <header class="hdr" id="hdr">
+    <div class="hdr-inner">
+      <a class="brand" href="#/">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bm" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#22d3ee"/><stop offset=".55" stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/>
+              </linearGradient>
+            </defs>
+            <rect x="1.5" y="1.5" width="29" height="29" rx="9" fill="url(#bm)" opacity=".18"/>
+            <rect x="1.5" y="1.5" width="29" height="29" rx="9" stroke="url(#bm)" stroke-width="1.5"/>
+            <path d="M23.5 9.6 9.4 15.1c-1 .4-1 1.8.1 2.1l3.6 1 1.3 4.1c.3 1 1.6 1.2 2.2.3l2-3 3.8 2.7c.9.6 2.1.1 2.3-1l2.2-10.4c.2-1.1-.9-1.9-1.9-1.4Z" fill="url(#bm)"/>
+            <path d="m13.4 18.1 8.8-5.6-6.6 6.6-.2 2.8-2-3.8Z" fill="#05060a" opacity=".45"/>
+          </svg>
+        </span>
+        <span class="brand-name">BotForge</span>
+        <span class="brand-badge">FREE</span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Primary">
+        <a href="#/" data-nav="home">Home</a>
+        <a href="#/builder" data-nav="builder">Builder</a>
+        <a href="#/bots" data-nav="bots">My bots</a>
+        <a href="#/runtime" data-nav="runtime">Live runtime</a>
+        <a href="#/templates" data-nav="templates">Templates</a>
+        <a href="#/deploy" data-nav="deploy">Deploy</a>
+        <a href="#/docs" data-nav="docs">Docs</a>
+      </nav>
+
+      <div class="hdr-actions">
+        <button class="kbd-btn" id="paletteBtn" type="button" aria-keyshortcuts="Control+K Meta+K" title="Search (Ctrl K)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span>Search</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle color theme">
+          <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+          <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.7 8.7 0 0 1 9.4 3.5a8.7 8.7 0 1 0 11.1 11.1Z"/></svg>
+        </button>
+        <a class="btn btn-ghost btn-sm gh-link" href="https://github.com/arslanansari1629-blip/AI" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="gh-ico"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" fill="currentColor"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="btn btn-primary btn-sm hdr-cta" href="#/builder">Launch builder</a>
+        <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="hdr-progress" id="routeProgress"></div>
+  </header>
+
+  <main id="view" tabindex="-1">
+    <noscript>
+      <div class="wrap" style="padding:120px 0">
+        <h1>BotForge needs JavaScript</h1>
+        <p class="muted">This is a client-side app — your bot configs never leave your device.</p>
+      </div>
+    </noscript>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#/">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none"><rect x="1.5" y="1.5" width="29" height="29" rx="9" stroke="url(#bmf)" stroke-width="1.5"/><path d="M23.5 9.6 9.4 15.1c-1 .4-1 1.8.1 2.1l3.6 1 1.3 4.1c.3 1 1.6 1.2 2.2.3l2-3 3.8 2.7c.9.6 2.1.1 2.3-1l2.2-10.4c.2-1.1-.9-1.9-1.9-1.4Z" fill="url(#bmf)"/><defs><linearGradient id="bmf" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#22d3ee"/><stop offset=".55" stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs></svg>
+            </span>
+            <span class="brand-name">BotForge</span>
+          </a>
+          <p class="muted small">A zero-signup Telegram bot platform.<br />Your tokens stay in your browser.</p>
+          <div class="pill-row">
+            <span class="pill">No login</span>
+            <span class="pill">No limits</span>
+            <span class="pill">MIT licensed</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-h">Product</h2>
+          <a href="#/builder">Bot builder</a>
+          <a href="#/bots">My bots</a>
+          <a href="#/runtime">Live runtime</a>
+          <a href="#/templates">Templates</a>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-h">Hosting</h2>
+          <a href="#/deploy">Deploy guide</a>
+          <a href="#/deploy">Cloudflare Workers</a>
+          <a href="#/deploy">Deno Deploy</a>
+          <a href="#/deploy">GitHub Actions</a>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-h">Resources</h2>
+          <a href="#/docs">Documentation</a>
+          <a href="https://core.telegram.org/bots/api" target="_blank" rel="noopener">Telegram Bot API</a>
+          <a href="https://t.me/BotFather" target="_blank" rel="noopener">@BotFather</a>
+          <a href="https://github.com/arslanansari1629-blip/AI" target="_blank" rel="noopener">Source code</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> BotForge · Free forever, built on the open Telegram Bot API.</span>
+        <span class="footer-status"><i class="dot-live"></i> All systems local · <span id="footerBots">0 bots</span> in this browser</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+  <div class="modal-root" id="modalRoot" hidden></div>
+
+  <div class="palette" id="palette" hidden>
+    <div class="palette-backdrop" data-close></div>
+    <div class="palette-box" role="dialog" aria-modal="true" aria-label="Command palette">
+      <div class="palette-head">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="paletteInput" type="text" placeholder="Jump to a page or run a command…" autocomplete="off" spellcheck="false" aria-label="Search commands" />
+        <kbd>Esc</kbd>
+      </div>
+      <div class="palette-list" id="paletteList" role="listbox"></div>
+      <div class="palette-foot">
+        <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+        <span><kbd>↵</kbd> open</span>
+        <span><kbd>Esc</kbd> close</span>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>
