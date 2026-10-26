@@ -8,6 +8,13 @@ No account. No email. No credit card. No bot limit. No server bill. No lock-in.
 
 [**Open BotForge →**](https://arslanansari1629-blip.github.io/AI/) · [Docs](https://arslanansari1629-blip.github.io/AI/#/docs) · [Templates](https://arslanansari1629-blip.github.io/AI/#/templates)
 
+> ### 📍 One-time step to make the live URL work
+> GitHub Pages starts **switched off** for every new repository, and only the repository owner can enable it.
+>
+> **Settings → Pages → Build and deployment → Source: _GitHub Actions_**
+>
+> That takes 10 seconds. The included workflow (`.github/workflows/pages.yml`) then publishes the site to **https://arslanansari1629-blip.github.io/AI/** on every push, and retries automatically every 6 hours — no further action needed.
+
 ---
 
 ## What it does
@@ -52,6 +59,13 @@ curl "https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<WORKER>.worker
 ```
 
 That's it — the bot answers 24/7 without your computer being on.
+
+## Live URL
+
+| What | URL |
+| --- | --- |
+| BotForge app | `https://arslanansari1629-blip.github.io/AI/` *(after enabling Pages — see the note above)* |
+| Repository | `https://github.com/arslanansari1629-blip/AI` |
 
 ## Self-hosting the site (30 seconds)
 

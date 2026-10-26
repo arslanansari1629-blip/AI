@@ -1,17 +1,22 @@
-# Deploy BotForge to GitHub Pages on every push to main.
-# No secrets, no build step, no dependencies — it is a static site.
+# Deploy BotForge to GitHub Pages.
+#
+# One-time setup (10 seconds, repo owner only):
+#   Settings → Pages → Build and deployment → Source: [GitHub Actions]
+# After that this workflow publishes the site on every push to main.
+# It also retries every 6 hours, so it self-heals once Pages is enabled.
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "17 */6 * * *"
   workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
-  # 'pages: write' is what lets configure-pages enable Pages on the first run.
 
 concurrency:
   group: pages
@@ -27,6 +32,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check whether Pages is enabled
+        id: pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          code=$(curl -s -o /tmp/pages.json -w '%{http_code}' \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages")
+          echo "status=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" = "200" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            cat /tmp/pages.json
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Enable GitHub Pages::Open https://github.com/${{ github.repository }}/settings/pages and set Source to 'GitHub Actions'. This workflow will then publish automatically (it retries every 6 hours)."
+          fi
+
       - name: Stage site (exclude repo metadata and tooling)
         run: |
           set -eu
@@ -35,22 +58,24 @@ jobs:
             [ -f "$f" ] && cp "$f" _site/
           done
           cp -r assets _site/assets
-          # sanity checks — fail loudly instead of deploying a broken site
           test -f _site/index.html
           test -f _site/assets/js/main.js
           test -f _site/assets/css/app.css
           echo "Staged $(find _site -type f | wc -l) files ($(du -sh _site | cut -f1))"
 
-      - name: Configure Pages (enables Pages automatically on first run)
+      - name: Configure Pages
+        if: steps.pages.outputs.enabled == 'true'
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload artifact
+        if: steps.pages.outputs.enabled == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 
       - name: Deploy to GitHub Pages
+        if: steps.pages.outputs.enabled == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 300000
