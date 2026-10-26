@@ -11,6 +11,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  # 'pages: write' is what lets configure-pages enable Pages on the first run.
 
 concurrency:
   group: pages
@@ -40,8 +41,10 @@ jobs:
           test -f _site/assets/css/app.css
           echo "Staged $(find _site -type f | wc -l) files ($(du -sh _site | cut -f1))"
 
-      - name: Configure Pages
+      - name: Configure Pages (enables Pages automatically on first run)
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
