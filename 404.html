@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TeleHost ∞ — Free Unlimited Telegram Bot Hosting | No Login</title>
+<meta name="description" content="Host unlimited Telegram bots free forever. No login, no credit card, no server needed. Live browser runner, no-code rules, code lab, templates & 24/7 deploy export.">
+<meta name="theme-color" content="#0b0620">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070418;--bg2:#0d0830;--card:rgba(255,255,255,.055);--card2:rgba(255,255,255,.09);--line:rgba(255,255,255,.11);--txt:#f4f2ff;--mut:#a49ec7;--a:#8b5cff;--b:#00d4ff;--c:#00ffb2;--d:#ff5ca8;--warn:#ffcf5c;--bad:#ff6b6b;--r:20px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;min-height:100vh}
+::selection{background:var(--a);color:#fff}
+::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:linear-gradient(var(--a),var(--b));border-radius:99px}::-webkit-scrollbar-track{background:#0d0a26}
+a{color:var(--b);text-decoration:none}button{font-family:inherit;cursor:pointer}input,select,textarea{font-family:inherit}
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;animation:float 14s ease-in-out infinite}
+.o1{width:520px;height:520px;background:#5b2ee5;top:-160px;left:-120px}.o2{width:440px;height:440px;background:#0077ff;top:20%;right:-160px;animation-delay:-4s}.o3{width:380px;height:380px;background:#00c98d;bottom:-160px;left:35%;opacity:.32;animation-delay:-8s}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-40px) scale(1.07)}}
+.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 20px}
+/* NAV */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:rgba(7,4,24,.68);border-bottom:1px solid var(--line)}
+.navrow{display:flex;align-items:center;justify-content:space-between;gap:14px;height:68px}
+.logo{display:flex;align-items:center;gap:11px;font-family:"Space Grotesk";font-weight:700;font-size:21px;color:#fff}
+.logo .badge{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:22px;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 8px 26px rgba(99,80,255,.55)}
+.logo em{font-style:normal;background:linear-gradient(90deg,var(--b),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+.navlinks{display:flex;gap:6px;flex-wrap:wrap}
+.navlinks a{color:var(--mut);font-size:14px;font-weight:600;padding:8px 12px;border-radius:10px}
+.navlinks a:hover{color:#fff;background:var(--card2)}
+.freechip{font-size:11px;font-weight:800;letter-spacing:.6px;padding:6px 10px;border-radius:99px;background:linear-gradient(90deg,#00c98d,#00d4ff);color:#03240f;white-space:nowrap}
+/* HERO */
+.hero{padding:74px 0 30px;text-align:center}
+.pill{display:inline-flex;gap:8px;align-items:center;padding:8px 16px;border:1px solid var(--line);border-radius:99px;background:var(--card);font-size:13px;font-weight:600;color:#d9d4ff}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 12px var(--c);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+h1{font-family:"Space Grotesk";font-size:clamp(38px,6.4vw,72px);line-height:1.04;letter-spacing:-1.5px;margin:22px auto 16px;max-width:920px}
+h1 .grad{background:linear-gradient(92deg,var(--a),var(--b) 45%,var(--c) 80%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mut);font-size:clamp(15px,2vw,19px);max-width:760px;margin:0 auto;line-height:1.65}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.btn{border:0;border-radius:14px;padding:14px 24px;font-weight:800;font-size:15px;color:#fff;background:linear-gradient(92deg,var(--a),var(--b));box-shadow:0 12px 32px rgba(90,70,255,.45);transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(90,70,255,.6)}
+.btn.ghost{background:var(--card);border:1px solid var(--line);box-shadow:none;color:#fff}
+.btn.green{background:linear-gradient(92deg,#00b57f,#00d4ff);color:#03240f}
+.btn.pink{background:linear-gradient(92deg,#ff5ca8,#8b5cff)}
+.btn.sm{padding:9px 15px;font-size:13px;border-radius:11px}
+.btn.danger{background:linear-gradient(92deg,#ff4d4d,#ff7b54);box-shadow:none}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.tickrow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:22px;color:#cfc9f5;font-size:13.5px;font-weight:600}
+.tickrow span::before{content:"✓ ";color:var(--c);font-weight:800}
+.statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:42px 0 8px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;text-align:left;backdrop-filter:blur(10px)}
+.stat b{font-family:"Space Grotesk";font-size:30px;display:block}
+.stat small{color:var(--mut);font-weight:600;font-size:13px}
+.marquee{overflow:hidden;border-block:1px solid var(--line);margin:36px 0 0;padding:13px 0;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq{display:flex;gap:44px;white-space:nowrap;animation:mq 26s linear infinite;color:#bdb6ec;font-weight:700;font-size:14px;width:max-content}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* SECTIONS */
+section{padding:52px 0 8px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-family:"Space Grotesk";font-size:clamp(26px,3.6vw,38px);letter-spacing:-.6px}
+.sec-head p{color:var(--mut);margin-top:7px;line-height:1.6;max-width:820px}
+.kicker{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--b);text-transform:uppercase;margin-bottom:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;backdrop-filter:blur(10px)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+@media(max-width:860px){.grid2{grid-template-columns:1fr}.navlinks{display:none}}
+/* TABS */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--mut);padding:11px 17px;border-radius:13px;font-weight:700;font-size:14px}
+.tab.on{color:#fff;background:linear-gradient(92deg,var(--a),var(--b));border-color:transparent}
+.panel{display:none}.panel.on{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(7px)}}
+/* FORMS */
+label{display:block;font-size:13px;font-weight:700;color:#d9d4ff;margin:14px 0 7px}
+.inp{width:100%;background:rgba(0,0,0,.32);border:1px solid var(--line);border-radius:13px;padding:13px 15px;color:#fff;font-size:14.5px;outline:none;transition:.2s}
+.inp:focus{border-color:var(--b);box-shadow:0 0 0 3px rgba(0,212,255,.18)}
+textarea.inp{min-height:92px;resize:vertical;line-height:1.55}
+textarea.code{font-family:"JetBrains Mono",monospace;font-size:13px;min-height:250px;background:#05030f}
+.hint{font-size:12.5px;color:var(--mut);line-height:1.55;margin-top:7px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row.between{justify-content:space-between}
+.switch{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;cursor:pointer;margin-top:12px;color:#e6e2ff}
+.switch input{appearance:none;width:46px;height:26px;border-radius:99px;background:#2a2450;position:relative;cursor:pointer;transition:.2s;flex:none}
+.switch input::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
+.switch input:checked{background:linear-gradient(90deg,#00b57f,#00d4ff)}.switch input:checked::after{left:23px}
+/* BOTS */
+.botcard{display:flex;gap:14px;align-items:flex-start;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
+.avatar{width:50px;height:50px;flex:none;border-radius:15px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,var(--a),var(--d))}
+.botcard h4{font-size:16px}.botcard .meta{color:var(--mut);font-size:12.5px;margin-top:3px;line-height:1.5;word-break:break-all}
+.status{font-size:11px;font-weight:800;padding:5px 10px;border-radius:99px;letter-spacing:.5px}
+.st-on{background:rgba(0,255,178,.15);color:var(--c);border:1px solid rgba(0,255,178,.4)}
+.st-off{background:rgba(255,255,255,.07);color:var(--mut);border:1px solid var(--line)}
+.st-demo{background:rgba(255,207,92,.14);color:var(--warn);border:1px solid rgba(255,207,92,.4)}
+.iconbtn{background:var(--card2);border:1px solid var(--line);color:#fff;border-radius:10px;padding:8px 12px;font-size:13px;font-weight:700}
+.iconbtn:hover{border-color:var(--b)}
+/* RULES */
+.rule{background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+.rule b{color:var(--b);font-family:"JetBrains Mono";font-size:13px}
+.rule p{color:#e8e4ff;font-size:13.5px;margin-top:5px;line-height:1.55;white-space:pre-wrap}
+/* CONSOLE / PHONE */
+.console{background:#04020c;border:1px solid var(--line);border-radius:16px;padding:16px;font-family:"JetBrains Mono",monospace;font-size:12.5px;line-height:1.75;height:330px;overflow:auto;white-space:pre-wrap;word-break:break-word}
+.lg-ok{color:var(--c)}.lg-err{color:var(--bad)}.lg-in{color:var(--b)}.lg-sys{color:#9a94c9}.lg-warn{color:var(--warn)}
+.phone{max-width:400px;margin:0 auto;background:#0e1621;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.55)}
+.phone-head{background:#17212b;padding:14px 16px;display:flex;gap:11px;align-items:center}
+.phone-head .avatar{width:40px;height:40px;border-radius:50%;font-size:19px}
+.chat{height:340px;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:9px;background:radial-gradient(600px 300px at 50% 0,#182b3d,#0e1621)}
+.msg{max-width:82%;padding:10px 13px;border-radius:15px;font-size:14px;line-height:1.5;white-space:pre-wrap;word-break:break-word}
+.msg.me{align-self:flex-end;background:#2b5278;border-bottom-right-radius:5px}
+.msg.bot{align-self:flex-start;background:#182533;border-bottom-left-radius:5px}
+.chatbar{display:flex;gap:8px;padding:11px;background:#17212b}
+.chatbar input{flex:1;background:#0e1621;border:0;border-radius:99px;padding:11px 15px;color:#fff;outline:none}
+.chatbar button{width:44px;height:44px;border-radius:50%;border:0;background:#2b9fd8;color:#fff;font-size:17px}
+/* TEMPLATES */
+.tpl{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:.2s}
+.tpl:hover{transform:translateY(-4px);border-color:rgba(0,212,255,.5)}
+.tpl .ic{font-size:34px}.tpl h3{margin:11px 0 6px;font-size:17px}.tpl p{color:var(--mut);font-size:13.5px;line-height:1.6;min-height:63px}
+.tag{font-size:11px;font-weight:800;color:var(--c);letter-spacing:.6px}
+/* STEPS / FAQ */
+.step{display:flex;gap:15px;margin-bottom:16px}
+.stepnum{width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg,var(--a),var(--b))}
+.step p{color:var(--mut);font-size:14px;line-height:1.6;margin-top:3px}
+details{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:16px 19px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;font-size:15px}
+details p{color:var(--mut);line-height:1.65;margin-top:9px;font-size:14px}
+pre.out{background:#04020c;border:1px solid var(--line);border-radius:14px;padding:15px;font-family:"JetBrains Mono";font-size:12px;line-height:1.7;overflow:auto;max-height:340px;white-space:pre-wrap;word-break:break-word}
+footer{margin-top:60px;border-top:1px solid var(--line);padding:34px 0 46px;color:var(--mut);font-size:13.5px;line-height:1.8}
+#toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,90px);z-index:99;background:#171038;border:1px solid rgba(0,212,255,.5);color:#fff;padding:13px 20px;border-radius:14px;font-weight:700;font-size:14px;transition:.35s;box-shadow:0 20px 50px rgba(0,0,0,.5);max-width:92vw;text-align:center}
+#toast.show{transform:translate(-50%,0)}
+.empty{text-align:center;color:var(--mut);padding:28px 10px;line-height:1.7}
+.kpi{font-family:"JetBrains Mono";color:var(--c)}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div class="orbs"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+
+<nav><div class="wrap navrow">
+  <a class="logo" href="#"><span class="badge">🤖</span>TeleHost&nbsp;<em>∞</em></a>
+  <div class="navlinks">
+    <a href="#host">Host Bot</a><a href="#runner">Live Runner</a><a href="#templates">Templates</a><a href="#tools">Tools</a><a href="#deploy">24/7 Deploy</a><a href="#faq">FAQ</a>
+  </div>
+  <span class="freechip">100% FREE • NO LOGIN</span>
+</div></nav>
+
+<div class="wrap">
+  <!-- HERO -->
+  <header class="hero">
+    <span class="pill"><span class="dot"></span> Servers Online • Unlimited Bots • Free Forever</span>
+    <h1>Host Telegram Bots<br><span class="grad">Unlimited. Free. Forever.</span></h1>
+    <p class="sub">The ultra-advanced Telegram bot hosting platform with <b style="color:#fff">zero login</b>, zero fees and zero server setup. Paste your bot token, build replies visually or with code, press <b style="color:#fff">▶ Start</b> — your bot is live in 10 seconds.</p>
+    <div class="cta">
+      <a href="#host"><button class="btn">🚀 Host My Bot — Free</button></a>
+      <a href="#runner"><button class="btn ghost">📱 Try Demo Bot (no token)</button></a>
+      <a href="#deploy"><button class="btn green">♾️ Make it 24/7</button></a>
+    </div>
+    <div class="tickrow"><span>No Sign-Up</span><span>No Credit Card</span><span>Unlimited Bots</span><span>No Coding Needed</span><span>Token Stays in Your Browser</span></div>
+    <div class="statgrid">
+      <div class="stat"><b>∞</b><small>Bots you can host</small></div>
+      <div class="stat"><b id="kBots">0</b><small>Your bots</small></div>
+      <div class="stat"><b id="kRunning" class="kpi">0</b><small>Running right now</small></div>
+      <div class="stat"><b id="kMsgs">0</b><small>Messages handled</small></div>
+      <div class="stat"><b id="kUptime">00:00:00</b><small>Session uptime</small></div>
+      <div class="stat"><b>$0</b><small>Forever. Really.</small></div>
+    </div>
+    <div class="marquee"><div class="mq" id="mq"></div></div>
+  </header>
+
+  <!-- HOW -->
+  <section>
+    <div class="grid3">
+      <div class="card"><div class="step"><div class="stepnum">1</div><div><h3>Get a token</h3><p>Open Telegram → search <b style="color:#fff">@BotFather</b> → send <span class="kpi">/newbot</span> → copy the token. Takes 30 seconds.</p></div></div><button class="btn sm ghost" onclick="window.open('https://t.me/BotFather','_blank')">Open @BotFather ↗</button></div>
+      <div class="card"><div class="step"><div class="stepnum">2</div><div><h3>Paste &amp; build</h3><p>Paste the token below. Add auto-replies with no-code rules, pick a template, or write JavaScript in the Code Lab.</p></div></div></div>
+      <div class="card"><div class="step"><div class="stepnum">3</div><div><h3>Press ▶ Start</h3><p>Your bot goes live instantly from this page. For closed-tab 24/7, export a ready-made free deploy in one click.</p></div></div></div>
+    </div>
+  </section>
+
+  <!-- HOST / DASHBOARD -->
+  <section id="host">
+    <div class="sec-head"><div class="kicker">⚡ Hosting Dashboard</div><h2>Your Bots — Unlimited &amp; Free</h2><p>No account exists here, so nothing can be hacked or billed. Everything is saved only in <b>your own browser</b> (localStorage). Tokens are sent only to <span class="kpi">api.telegram.org</span> — never to us.</p></div>
+    <div class="tabs" id="mainTabs">
+      <button class="tab on" data-p="pBots">🤖 My Bots</button>
+      <button class="tab" data-p="pRules">🧩 No-Code Rules</button>
+      <button class="tab" data-p="pCode">💻 Code Lab (JS)</button>
+      <button class="tab" data-p="pSettings">⚙️ Bot Settings</button>
+      <button class="tab" data-p="pBackup">💾 Backup</button>
+    </div>
+
+    <!-- BOTS PANEL -->
+    <div class="panel on" id="pBots"><div class="grid2">
+      <div class="card">
+        <h3>➕ Add a New Bot</h3>
+        <label>Bot name (anything you like)</label><input class="inp" id="newName" placeholder="e.g. My Support Bot">
+        <label>Bot token from @BotFather</label><input class="inp" id="newToken" placeholder="123456789:AAxxxxxxxxxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+        <p class="hint">🔒 Stored only on this device. Leave token empty to create a demo bot you can test in the playground.</p>
+        <div class="row" style="margin-top:16px"><button class="btn" id="btnAdd">🚀 Add &amp; Validate Bot</button><button class="iconbtn" id="btnAddDemo">Add Demo Bot</button></div>
+        <hr style="border-color:var(--line);opacity:.35;margin:22px 0">
+        <div class="row"><button class="btn sm green" id="btnStartAll">▶ Start All</button><button class="btn sm danger" id="btnStopAll">⏹ Stop All</button></div>
+      </div>
+      <div class="card"><div class="row between"><h3>🤖 Hosted Bots</h3><input class="inp" id="searchBots" placeholder="🔍 Search…" style="width:180px;padding:9px 12px"></div><div id="botList" style="margin-top:16px"></div></div>
+    </div></div>
+
+    <!-- RULES PANEL -->
+    <div class="panel" id="pRules"><div class="grid2">
+      <div class="card">
+        <h3>🧩 Auto-Reply Rule Builder</h3>
+        <label>Editing bot</label><select class="inp botSelect"></select>
+        <label>When user sends… (match type)</label>
+        <select class="inp" id="ruleType"><option value="command">Command — e.g. /price</option><option value="exact">Exact text</option><option value="contains" selected>Contains keyword</option><option value="startswith">Starts with</option><option value="regex">Regex (advanced)</option></select>
+        <label>Trigger text</label><input class="inp" id="ruleTrigger" placeholder="e.g. price  — or —  /buy">
+        <label>Bot replies with…</label><textarea class="inp" id="ruleReply" placeholder="Hi {name}! 👋 It's 100% FREE forever!"></textarea>
+        <p class="hint">Placeholders: <span class="kpi">{name}</span> <span class="kpi">{username}</span> <span class="kpi">{chatId}</span> <span class="kpi">{text}</span></p>
+        <label>Inline buttons (optional — one per line: Label | https://url)</label><textarea class="inp" id="ruleButtons" style="min-height:64px" placeholder="🌐 Visit Website | https://example.com&#10;💬 Support | https://t.me/yourname"></textarea>
+        <div class="row" style="margin-top:16px"><button class="btn" id="btnAddRule">➕ Add Rule</button></div>
+      </div>
+      <div class="card"><h3>📋 Rules for selected bot</h3><div id="ruleList" style="margin-top:14px"></div></div>
+    </div></div>
+
+    <!-- CODE PANEL -->
+    <div class="panel" id="pCode"><div class="card">
+      <div class="row between"><h3>💻 Code Lab — JavaScript Bot Brain</h3><select class="inp botSelect" style="width:240px;padding:9px 12px"></select></div>
+      <label class="switch"><input type="checkbox" id="useCode"> Enable custom JS code for this bot (runs before rules)</label>
+      <label>Your code — variables: <span class="kpi">text, chatId, user, message</span> • functions: <span class="kpi">reply(txt)</span>, <span class="kpi">replyButtons(txt, [[label,url]])</span></label>
+      <textarea class="inp code" id="codeEditor" spellcheck="false"></textarea>
+      <div class="row" style="margin-top:14px"><button class="btn" id="btnSaveCode">💾 Save Code</button><button class="iconbtn" id="btnCodeExample">Load Example</button></div>
+      <p class="hint">⚠️ Code runs in your own browser tab only. Test it instantly in the Playground below.</p>
+    </div></div>
+
+    <!-- SETTINGS PANEL -->
+    <div class="panel" id="pSettings"><div class="card">
+      <div class="row between"><h3>⚙️ Bot Settings</h3><select class="inp botSelect" style="width:240px;padding:9px 12px"></select></div>
+      <div class="grid2">
+        <div>
+          <label>/start message</label><textarea class="inp" id="setStart"></textarea>
+          <label>/help message</label><textarea class="inp" id="setHelp"></textarea>
+          <label>Welcome message for new group members</label><textarea class="inp" id="setWelcome"></textarea>
+        </div>
+        <div>
+          <label>Fallback reply (when nothing matches — leave empty for silence)</label><textarea class="inp" id="setFallback"></textarea>
+          <label class="switch"><input type="checkbox" id="setEcho"> Echo mode — repeat user's message back</label><br>
+          <label class="switch"><input type="checkbox" id="setWelcomeOn"> Welcome new group members</label><br>
+          <label class="switch"><input type="checkbox" id="setBuiltins" checked> Built-ins: /ping → Pong 🏓, /id → chat ID, /time</label>
+          <div style="margin-top:20px"><button class="btn" id="btnSaveSettings">💾 Save Settings</button></div>
+        </div>
+      </div>
+    </div></div>
+
+    <!-- BACKUP PANEL -->
+    <div class="panel" id="pBackup"><div class="card">
+      <h3>💾 Backup &amp; Restore (No Cloud — You Own Your Data)</h3>
+      <p class="hint" style="font-size:13.5px;margin-top:8px">Since there is no login, your bots live in this browser. Export a backup file to move them to another device/browser, or before clearing browser data. <b style="color:var(--warn)">The file contains bot tokens — keep it private!</b></p>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="btnExport">⬇️ Export All Bots (.json)</button>
+        <label class="btn ghost" style="margin:0;cursor:pointer">⬆️ Import Backup<input type="file" id="fileImport" accept=".json" hidden></label>
+        <button class="btn danger sm" id="btnWipe">🗑 Delete Everything</button>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- RUNNER -->
+  <section id="runner">
+    <div class="sec-head"><div class="kicker">🟢 Live Runner + Playground</div><h2>Watch Your Bot Work in Real-Time</h2><p>Left: the live engine log (real Telegram traffic for running bots). Right: a fake Telegram chat to test any bot instantly — no token needed.</p></div>
+    <div class="grid2">
+      <div class="card">
+        <div class="row between"><h3>🖥 Live Console</h3><div class="row"><button class="iconbtn" id="btnClearLog">Clear</button><button class="iconbtn" id="btnDlLog">⬇ Logs</button></div></div>
+        <div class="console" id="console" style="margin-top:14px"></div>
+        <p class="hint">💡 Keep this tab open and your bots keep replying. Want them alive with the tab closed? Use the free <a href="#deploy">24/7 Deploy export</a> below — 3 minutes, still $0.</p>
+      </div>
+      <div>
+        <div class="row" style="justify-content:center;margin-bottom:12px"><span style="font-weight:700;font-size:14px">Testing:</span><select class="inp botSelect" style="width:230px;padding:9px 12px"></select></div>
+        <div class="phone">
+          <div class="phone-head"><div class="avatar">🤖</div><div><b id="pgName">Demo Bot</b><div style="font-size:12px;color:#7f91a4">bot • online</div></div></div>
+          <div class="chat" id="pgChat"></div>
+          <div class="chatbar"><input id="pgInput" placeholder="Message… try /start"><button id="pgSend">➤</button></div>
+        </div>
+        <div class="row" style="justify-content:center;margin-top:12px">
+          <button class="iconbtn pgTry">/start</button><button class="iconbtn pgTry">/help</button><button class="iconbtn pgTry">price</button><button class="iconbtn pgTry">hello</button><button class="iconbtn pgTry">/ping</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMPLATES -->
+  <section id="templates">
+    <div class="sec-head"><div class="kicker">🎨 1-Click Templates</div><h2>Start From a Pro Template</h2><p>Applies instantly to the selected bot: <select class="inp botSelect" style="width:220px;display:inline-block;padding:8px 11px"></select></p></div>
+    <div class="grid3" id="tplGrid"></div>
+  </section>
+
+  <!-- TOOLS -->
+  <section id="tools">
+    <div class="sec-head"><div class="kicker">🛠 Pro Tools — Free</div><h2>Telegram Bot API Toolkit</h2><p>Direct tools that talk to Telegram's official Bot API from your browser.</p></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>🔑 Token Validator / Bot Info (getMe)</h3>
+        <label>Bot token</label><input class="inp toolToken" placeholder="123456789:AA…">
+        <div class="row" style="margin-top:14px"><button class="btn sm" id="btnGetMe">Validate Token</button><button class="btn sm ghost" id="btnUpdates">Fetch Recent Updates (find Chat IDs)</button></div>
+        <hr style="border-color:var(--line);opacity:.35;margin:20px 0">
+        <h3>✉️ Send Test Message</h3>
+        <label>Chat ID</label><input class="inp" id="toolChat" placeholder="e.g. 987654321 or @channelname">
+        <label>Message</label><textarea class="inp" id="toolMsg" style="min-height:64px" placeholder="Hello from TeleHost ∞ 🚀"></textarea>
+        <div style="margin-top:12px"><button class="btn sm green" id="btnSendTest">Send Message ➤</button></div>
+      </div>
+      <div class="card">
+        <h3>🌐 Webhook Manager</h3>
+        <label>Bot token</label><input class="inp toolToken" placeholder="123456789:AA…">
+        <label>Webhook URL (https://…)</label><input class="inp" id="toolHook" placeholder="https://your-app.onrender.com/webhook">
+        <div class="row" style="margin-top:14px"><button class="btn sm" id="btnHookInfo">Get Info</button><button class="btn sm green" id="btnHookSet">Set Webhook</button><button class="btn sm danger" id="btnHookDel">Delete</button></div>
+        <label>API Response</label><pre class="out" id="toolOut">// Results will appear here…</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPLOY -->
+  <section id="deploy">
+    <div class="sec-head"><div class="kicker">♾️ 24/7 — Even With Tab Closed</div><h2>Free Forever 24/7 Deploy Export</h2><p>The browser runner above works while this tab is open. For true always-on hosting, generate a complete ready-to-run project (with <b>your rules baked in</b>) and drop it on any free host — <b>Render, Railway, Koyeb, Replit, PythonAnywhere</b> — in about 3 minutes. Still $0.</p></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>📦 Generate My Bot Project</h3>
+        <label>Bot</label><select class="inp botSelect"></select>
+        <label>Language</label>
+        <select class="inp" id="depLang"><option value="py">🐍 Python (python-telegram-bot) — easiest</option><option value="js">🟨 Node.js (node-telegram-bot-api)</option></select>
+        <div class="row" style="margin-top:16px"><button class="btn" id="btnGenCode">⚙️ Generate Code</button></div>
+        <label>Generated bot code</label><textarea class="inp code" id="depCode" style="min-height:300px" spellcheck="false" placeholder="Click Generate Code…"></textarea>
+        <div class="row" style="margin-top:12px">
+          <button class="btn sm green" id="btnDlMain">⬇ Bot File</button>
+          <button class="btn sm ghost" id="btnDlReq">⬇ requirements / package.json</button>
+          <button class="btn sm ghost" id="btnDlDocker">⬇ Dockerfile</button>
+          <button class="btn sm ghost" id="btnCopyCode">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>🚀 Deploy in 3 Minutes (Pick Any Free Host)</h3>
+        <div style="margin-top:16px">
+          <div class="step"><div class="stepnum">1</div><div><b>Download the 2-3 files</b><p>Bot file + requirements/package.json (+ optional Dockerfile).</p></div></div>
+          <div class="step"><div class="stepnum">2</div><div><b>Create a free app &amp; upload</b><p>Render.com → New → Background Worker (or Web Service) • Railway.app → New Project • Koyeb / Replit → Import files.</p></div></div>
+          <div class="step"><div class="stepnum">3</div><div><b>Add one environment variable</b><p><span class="kpi">BOT_TOKEN</span> = your token from @BotFather. Never hard-code tokens in public repos!</p></div></div>
+          <div class="step"><div class="stepnum">4</div><div><b>Start command</b><p>Python: <span class="kpi">python bot.py</span> &nbsp;•&nbsp; Node: <span class="kpi">node bot.js</span></p></div></div>
+          <div class="step"><div class="stepnum">✓</div><div><b>Done — 24/7 forever</b><p>Close every tab. Your bot keeps replying. Free tiers may sleep on some hosts; Koyeb/Railway/Replit keep workers awake best.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="sec-head"><div class="kicker">❓ FAQ</div><h2>Honest Answers</h2></div>
+    <details open><summary>Is it really free forever? What's the catch?</summary><p>Yes — this website itself is a static page hosted free on GitHub Pages, and the bot engine runs in <i>your</i> browser using Telegram's free Bot API. There is no server bill for anyone, so there's nothing to charge you for. No login, no card, no trials, no limits on bots or rules.</p></details>
+    <details><summary>Does my bot run when I close this tab?</summary><p>The in-browser runner needs the tab open (it literally runs on your device — that's why it's free and private). For closed-tab 24/7 operation, use the <a href="#deploy">24/7 Deploy Export</a>: we generate a complete Python/Node project with your rules baked in, ready for free hosts like Render, Railway, Koyeb or Replit.</p></details>
+    <details><summary>Is my bot token safe?</summary><p>Tokens are saved only in your browser's localStorage and are sent only to <span class="kpi">api.telegram.org</span>. This site has no backend and no analytics — view the page source and verify. Still, treat tokens like passwords: if one leaks, revoke it instantly via @BotFather → /revoke.</p></details>
+    <details><summary>How many bots / messages can I handle?</summary><p>Unlimited bots and rules on our side. Telegram's own Bot API limits apply (~30 messages/sec per bot), which is far more than most bots ever need.</p></details>
+    <details><summary>I cleared my browser data and lost my bots!</summary><p>Without a login there's no cloud copy — that's the privacy trade-off. Use <b>Backup → Export</b> regularly and keep the .json file safe (it contains tokens). You can also re-add a bot anytime with its token from @BotFather (/mybots).</p></details>
+    <details><summary>Can I use Python instead of JavaScript?</summary><p>In-browser: use No-Code Rules or the JS Code Lab. For Python, use the Deploy Export — it generates a full <span class="kpi">python-telegram-bot</span> project with your rules converted automatically.</p></details>
+    <details><summary>Why does a running bot say "Conflict: terminated by other getUpdates"?</summary><p>That token is being polled somewhere else (another tab, host, or script) or has a webhook set. Stop the other instance, or delete the webhook in the Tools section, then start again here.</p></details>
+  </section>
+
+  <footer>
+    <div class="row between"><span class="logo" style="font-size:17px"><span class="badge" style="width:34px;height:34px;font-size:17px;border-radius:10px">🤖</span>TeleHost <em>∞</em></span><span>Free Forever • No Login • Unlimited Bots</span></div>
+    <p style="margin-top:12px">Built with the official Telegram Bot API. Not affiliated with Telegram. Your tokens never leave your browser except to api.telegram.org. Hosted free on GitHub Pages — fork it, it's yours.</p>
+  </footer>
+</div>
+<div id="toast"></div>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const LS="telehost_infinity_v1";
+const uid=()=>Math.random().toString(36).slice(2,10);
+const now=()=>new Date().toLocaleTimeString();
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* ---------- STARFIELD ---------- */
+(()=>{const c=$("#stars"),x=c.getContext("2d");let W,H,stars=[];
+function rs(){W=c.width=innerWidth;H=c.height=innerHeight;stars=Array.from({length:130},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.3,s:Math.random()*.25+.05}))}
+rs();addEventListener("resize",rs);
+(function draw(){x.clearRect(0,0,W,H);x.fillStyle="rgba(200,195,255,.8)";stars.forEach(st=>{x.beginPath();x.arc(st.x,st.y,st.r,0,7);x.fill();st.y-=st.s;if(st.y<0){st.y=H;st.x=Math.random()*W}});requestAnimationFrame(draw)})()})();
+const mqItems=["♾️ UNLIMITED BOTS","🆓 FREE FOREVER","🔓 NO LOGIN","⚡ 10-SECOND SETUP","🧩 NO-CODE RULES","💻 JS CODE LAB","🎨 PRO TEMPLATES","🔒 PRIVATE BY DESIGN","🚀 24/7 DEPLOY EXPORT","💳 NO CREDIT CARD"];
+$("#mq").innerHTML=[...mqItems,...mqItems].map(t=>`<span>${t}</span>`).join("");
+
+/* ---------- STATE ---------- */
+const CODE_EXAMPLE=`// 🤖 TeleHost ∞ Code Lab
+// Vars: text, chatId, user, message
+// Fns:  reply(txt), replyButtons(txt, [[label, url], ...])
+
+if (text === "/start") {
+  replyButtons("Welcome " + (user?.first_name || "friend") + "! 👋\\nPick an option:", [
+    ["🌐 Website", "https://example.com"],
+    ["💬 Support", "https://t.me/telegram"]
+  ]);
+}
+else if (text?.toLowerCase().includes("price")) reply("It's FREE forever! ♾️");
+else if (text?.toLowerCase().includes("hello")) reply("Hello " + (user?.first_name || "") + "! 😊 How can I help?");
+else if (text === "/dice") reply("🎲 You rolled: " + (1 + Math.floor(Math.random() * 6)));
+else if (text?.startsWith("/echo ")) reply(text.slice(6));`;
+
+function defaultBot(name,token,demo=false){
+  return {id:uid(),name:name||"My Bot",token:token||"",username:"",demo:!!demo,created:Date.now(),
+  stats:{msgs:0,replies:0,users:0},code:CODE_EXAMPLE,
+  settings:{start:"👋 Welcome {name}!\n\nI'm live & hosted FREE on TeleHost ∞ ♾️\nSend /help to see what I can do.",help:"🤖 Commands:\n/start — start\n/help — this help\n/ping — check I'm alive\n/id — your chat ID\n/time — current time\n\nTry typing: hello, price",welcome:"👋 Welcome {name} to the group! 🎉",fallback:"",echo:false,welcomeOn:true,builtins:true,useCode:false},
+  rules:[
+    {id:uid(),type:"contains",trigger:"hello",reply:"Hello {name}! 😊 How can I help you today?",buttons:""},
+    {id:uid(),type:"contains",trigger:"price",reply:"💰 Great news — it's 100% FREE forever! ♾️",buttons:""},
+    {id:uid(),type:"command",trigger:"/buy",reply:"🛒 Tap below to get started:",buttons:"🚀 Get Started | https://t.me/BotFather"}
+  ]};
+}
+let S;
+try{S=JSON.parse(localStorage.getItem(LS))}catch(e){}
+if(!S||!Array.isArray(S.bots)){S={bots:[defaultBot("Demo Bot (no token needed)","",true)],active:null};S.active=S.bots[0].id;save()}
+if(!S.active&&S.bots[0])S.active=S.bots[0].id;
+function save(){try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}}
+const botById=id=>S.bots.find(b=>b.id===id);
+const activeBot=()=>botById(S.active)||S.bots[0];
+
+/* ---------- RUNNERS ---------- */
+const runners=new Map(); // id -> {running, offset, ctrl, users:Set}
+const startedAt=Date.now();
+setInterval(()=>{const s=Math.floor((Date.now()-startedAt)/1000);$("#kUptime").textContent=[s/3600,s/60%60,s%60].map(v=>String(Math.floor(v)).padStart(2,"0")).join(":")},1000);
+
+/* ---------- UI HELPERS ---------- */
+let toastT;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),3200)}
+function log(msg,cls="sys"){const c=$("#console");const d=document.createElement("div");d.className="lg-"+cls;d.textContent=`[${now()}] ${msg}`;c.appendChild(d);while(c.children.length>400)c.firstChild.remove();c.scrollTop=c.scrollHeight}
+$("#btnClearLog").onclick=()=>$("#console").innerHTML="";
+$("#btnDlLog").onclick=()=>download("telehost-logs.txt",$("#console").innerText);
+function download(name,content,mime="text/plain"){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([content],{type:mime}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+
+/* Tabs */
+$("#mainTabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(!b)return;$$("#mainTabs .tab").forEach(t=>t.classList.remove("on"));b.classList.add("on");$$(".panel").forEach(p=>p.classList.remove("on"));$("#"+b.dataset.p).classList.add("on");syncEditor()});
+
+/* ---------- TELEGRAM API ---------- */
+async function tg(token,method,params={},signal){
+  const r=await fetch(`https://api.telegram.org/bot${token}/${method}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(params),signal});
+  const j=await r.json().catch(()=>({ok:false,description:"Bad response"}));
+  if(!j.ok)throw new Error(j.description||"Telegram API error");
+  return j.result;
+}
+function fillPlaceholders(txt,ctx){return String(txt||"").replaceAll("{name}",ctx.user?.first_name||"friend").replaceAll("{username}",ctx.user?.username?"@"+ctx.user.username:"").replaceAll("{chatId}",ctx.chatId??"").replaceAll("{text}",ctx.text||"")}
+function parseButtons(str){
+  if(!str||!str.trim())return null;
+  const rows=str.split("\n").map(l=>l.trim()).filter(Boolean).map(l=>{const[label,url]=l.split("|").map(s=>(s||"").trim());return url?[{text:label||url,url}]:null}).filter(Boolean);
+  return rows.length?{inline_keyboard:rows}:null;
+}
+async function sendMsg(bot,chatId,text,buttons){
+  if(bot.demo||!bot.token)return; // demo handled in playground
+  const p={chat_id:chatId,text:String(text).slice(0,4096)};
+  const kb=Array.isArray(buttons)?{inline_keyboard:buttons.map(b=>[{text:b[0],url:b[1]}])}:buttons;
+  if(kb)p.reply_markup=kb;
+  await tg(bot.token,"sendMessage",p);
+  bot.stats.replies++;refreshKpis();
+}
+
+/* ---------- BOT BRAIN (shared: live + playground) ---------- */
+function brain(bot,ctx,sendFn){
+  const {text}=ctx;let sent=0;
+  const reply=t=>{sendFn(fillPlaceholders(t,ctx));sent++};
+  const replyButtons=(t,btns)=>{sendFn(fillPlaceholders(t,ctx),Array.isArray(btns)?{inline_keyboard:btns.map(b=>[{text:b[0],url:b[1]}])}:btns);sent++};
+  // 1) Custom JS
+  if(bot.settings.useCode&&bot.code&&bot.code.trim()){
+    try{new Function("text","chatId","user","message","reply","replyButtons",bot.code)(text,ctx.chatId,ctx.user,ctx.message,reply,replyButtons)}
+    catch(e){log(`⚠ [${bot.name}] Code error: ${e.message}`,"warn")}
+    if(sent)return sent;
+  }
+  const low=(text||"").toLowerCase().trim();
+  // 2) Built-in commands
+  if(low==="/start"||low.startsWith("/start ")){reply(bot.settings.start);return sent}
+  if(low==="/help"){reply(bot.settings.help);return sent}
+  if(bot.settings.builtins){
+    if(low==="/ping"){reply("Pong! 🏓 I'm alive & hosted free on TeleHost ∞");return sent}
+    if(low==="/id"){reply("🆔 Chat ID: "+ctx.chatId+"\n👤 Your ID: "+(ctx.user?.id??"?"));return sent}
+    if(low==="/time"){reply("🕒 "+new Date().toLocaleString());return sent}
+  }
+  // 3) Rules
+  for(const r of bot.rules){
+    const trig=(r.trigger||"").toLowerCase().trim();if(!trig)continue;let hit=false;
+    try{
+      if(r.type==="command")hit=low===trig||low.startsWith(trig+" ")||low.startsWith(trig+"@");
+      else if(r.type==="exact")hit=low===trig;
+      else if(r.type==="contains")hit=low.includes(trig);
+      else if(r.type==="startswith")hit=low.startsWith(trig);
+      else if(r.type==="regex")hit=new RegExp(r.trigger,"i").test(text||"");
+    }catch(e){}
+    if(hit){sendFn(fillPlaceholders(r.reply,ctx),parseButtons(r.buttons));sent++;return sent}
+  }
+  // 4) Echo / fallback
+  if(bot.settings.echo&&text){reply(text);return sent}
+  if(bot.settings.fallback){reply(bot.settings.fallback);return sent}
+  return sent;
+}
+
+/* ---------- POLLING ENGINE ---------- */
+async function handleUpdate(bot,upd,R){
+  const msg=upd.message||upd.edited_message;
+  if(!msg)return;
+  const chatId=msg.chat.id,user=msg.from||{},text=msg.text||msg.caption||"";
+  if(user.id&&!R.users.has(user.id)){R.users.add(user.id);bot.stats.users=R.users.size}
+  if(msg.new_chat_members?.length&&bot.settings.welcomeOn){
+    for(const m of msg.new_chat_members){try{await sendMsg(bot,chatId,fillPlaceholders(bot.settings.welcome,{user:m,chatId,text:""}))}catch(e){}}
+    log(`👋 [${bot.name}] Welcomed new member(s) in ${chatId}`,"ok");return;
+  }
+  if(!text)return;
+  bot.stats.msgs++;refreshKpis();
+  log(`📩 [${bot.name}] ${user.first_name||user.id||"?"}: ${text}`,"in");
+  const out=[];brain(bot,{text,chatId,user,message:msg},(t,b)=>out.push([t,b]));
+  for(const[t,b]of out){try{await sendMsg(bot,chatId,t,b);log(`📤 [${bot.name}] → ${String(t).slice(0,90)}`,"ok")}catch(e){log(`✖ [${bot.name}] Send failed: ${e.message}`,"err")}}
+  save();
+}
+async function pollLoop(bot,R){
+  log(`▶ [${bot.name}] Engine started — listening for messages…`,"ok");
+  while(R.running){
+    try{
+      R.ctrl=new AbortController();
+      const updates=await tg(bot.token,"getUpdates",{timeout:25,offset:R.offset,allowed_updates:["message","edited_message"]},R.ctrl.signal);
+      for(const u of updates){R.offset=u.update_id+1;await handleUpdate(bot,u,R)}
+    }catch(e){
+      if(!R.running)break;
+      if(e.name==="AbortError")continue;
+      log(`✖ [${bot.name}] ${e.message} — retrying in 4s…`,"err");
+      if(/conflict/i.test(e.message))log(`⚠ [${bot.name}] Conflict: same token is running elsewhere or a webhook is set. Stop the other instance / delete webhook in Tools.`,"warn");
+      await new Promise(r=>setTimeout(r,4000));
+    }
+  }
+  log(`⏹ [${bot.name}] Engine stopped.`,"sys");renderAll();
+}
+async function startBot(id){
+  const bot=botById(id);if(!bot)return;
+  if(bot.demo||!bot.token){toast("🎮 Demo bot has no token — test it in the Playground below!");document.querySelector("#runner").scrollIntoView({behavior:"smooth"});return}
+  if(runners.get(id)?.running)return;
+  try{const me=await tg(bot.token,"getMe");bot.username=me.username||"";bot.name=bot.name||me.first_name;save();log(`✅ [${bot.name}] Connected as @${me.username}`,"ok")}
+  catch(e){toast("❌ Invalid token: "+e.message);log(`✖ [${bot.name}] getMe failed: ${e.message}`,"err");return}
+  const R={running:true,offset:0,ctrl:null,users:new Set()};runners.set(id,R);renderAll();pollLoop(bot,R);
+  toast(`🟢 ${bot.name} is LIVE! Message it on Telegram.`);
+}
+function stopBot(id){const R=runners.get(id);if(R){R.running=false;try{R.ctrl?.abort()}catch(e){}}renderAll()}
+$("#btnStartAll").onclick=()=>S.bots.forEach(b=>startBot(b.id));
+$("#btnStopAll").onclick=()=>{S.bots.forEach(b=>stopBot(b.id));toast("⏹ All bots stopped")};
+
+/* ---------- RENDER ---------- */
+function refreshKpis(){
+  $("#kBots").textContent=S.bots.length;
+  $("#kRunning").textContent=[...runners.values()].filter(r=>r.running).length;
+  $("#kMsgs").textContent=S.bots.reduce((a,b)=>a+(b.stats?.msgs||0),0).toLocaleString();
+}
+function renderSelects(){
+  const cur=S.active;
+  $$(".botSelect").forEach(sel=>{
+    sel.innerHTML=S.bots.map(b=>`<option value="${b.id}" ${b.id===cur?"selected":""}>${esc(b.name)}${b.username?" (@"+esc(b.username)+")":""}${b.demo?" — DEMO":""}</option>`).join("")||`<option value="">No bots yet</option>`;
+    sel.onchange=()=>{S.active=sel.value;save();renderAll()};
+  });
+  const ab=activeBot();$("#pgName").textContent=ab?ab.name:"No bot";
+}
+function renderBots(){
+  const q=($("#searchBots").value||"").toLowerCase();
+  const list=S.bots.filter(b=>!q||b.name.toLowerCase().includes(q)||(b.username||"").includes(q));
+  $("#botList").innerHTML=list.length?list.map(b=>{
+    const run=runners.get(b.id)?.running;
+    return `<div class="botcard"><div class="avatar">🤖</div><div style="flex:1;min-width:0">
+      <div class="row between"><h4>${esc(b.name)}</h4><span class="status ${b.demo?"st-demo":run?"st-on":"st-off"}">${b.demo?"🎮 DEMO":run?"🟢 RUNNING":"⚪ STOPPED"}</span></div>
+      <div class="meta">${b.username?"@"+esc(b.username)+" • ":""}${b.token?"🔑 "+esc(b.token.slice(0,10))+"…"+esc(b.token.slice(-4)):"No token (playground only)"}<br>📩 ${b.stats.msgs} msgs • 📤 ${b.stats.replies} replies • 🧩 ${b.rules.length} rules ${b.settings.useCode?"• 💻 JS on":""}</div>
+      <div class="row" style="margin-top:10px">
+        ${run?`<button class="btn sm danger" onclick="stopBot('${b.id}')">⏹ Stop</button>`:`<button class="btn sm green" onclick="startBot('${b.id}')">▶ Start</button>`}
+        <button class="iconbtn" onclick="selectBot('${b.id}')">✏️ Edit</button>
+        ${b.username?`<a href="https://t.me/${esc(b.username)}" target="_blank"><button class="iconbtn">💬 Open in Telegram</button></a>`:""}
+        <button class="iconbtn" onclick="dupBot('${b.id}')">⧉ Duplicate</button>
+        <button class="iconbtn" onclick="delBot('${b.id}')">🗑</button>
+      </div></div></div>`}).join("")
+    :`<div class="empty">🤖 No bots found.<br>Add your first bot on the left — it's free &amp; unlimited!</div>`;
+}
+function renderRules(){
+  const b=activeBot();
+  $("#ruleList").innerHTML=!b?`<div class="empty">Add a bot first.</div>`:b.rules.length?b.rules.map(r=>`
+    <div class="rule"><div class="row between"><b>[${esc(r.type)}] ${esc(r.trigger)}</b><button class="iconbtn" onclick="delRule('${r.id}')">🗑</button></div><p>${esc(r.reply)}</p>${r.buttons?`<p style="color:var(--mut);font-size:12px">🔘 ${esc(r.buttons.replaceAll("\n","  •  "))}</p>`:""}</div>`).join("")
+    :`<div class="empty">No rules yet. Add your first auto-reply on the left 🧩</div>`;
+}
+function syncEditor(){
+  const b=activeBot();if(!b)return;
+  $("#codeEditor").value=b.code||CODE_EXAMPLE;$("#useCode").checked=!!b.settings.useCode;
+  $("#setStart").value=b.settings.start;$("#setHelp").value=b.settings.help;$("#setWelcome").value=b.settings.welcome;
+  $("#setFallback").value=b.settings.fallback;$("#setEcho").checked=!!b.settings.echo;
+  $("#setWelcomeOn").checked=!!b.settings.welcomeOn;$("#setBuiltins").checked=!!b.settings.builtins;
+}
+function renderAll(){renderSelects();renderBots();renderRules();syncEditor();refreshKpis()}
+window.selectBot=id=>{S.active=id;save();renderAll();toast("✏️ Now editing: "+(botById(id)?.name||""));document.querySelector('[data-p="pRules"]').click()};
+window.dupBot=id=>{const b=botById(id);if(!b)return;const c=JSON.parse(JSON.stringify(b));c.id=uid();c.name=b.name+" (copy)";S.bots.push(c);S.active=c.id;save();renderAll();toast("⧉ Bot duplicated")};
+window.delBot=id=>{const b=botById(id);if(!confirm(`Delete "${b?.name}" forever?`))return;stopBot(id);S.bots=S.bots.filter(x=>x.id!==id);if(S.active===id)S.active=S.bots[0]?.id||null;save();renderAll();toast("🗑 Bot deleted")};
+window.delRule=rid=>{const b=activeBot();b.rules=b.rules.filter(r=>r.id!==rid);save();renderAll()};
+$("#searchBots").oninput=renderBots;
+
+/* Add bot */
+$("#btnAddDemo").onclick=()=>{const b=defaultBot($("#newName").value.trim()||"Demo Bot","",true);S.bots.push(b);S.active=b.id;save();renderAll();toast("🎮 Demo bot added — try it in the Playground!")};
+$("#btnAdd").onclick=async()=>{
+  const name=$("#newName").value.trim(),token=$("#newToken").value.trim();
+  if(!token){$("#btnAddDemo").click();return}
+  if(!/^\d{6,}:[A-Za-z0-9_-]{20,}$/.test(token)){toast("⚠️ That doesn't look like a BotFather token (format: 123456:AA…)");return}
+  const b=defaultBot(name||"My Bot",token);
+  $("#btnAdd").disabled=true;$("#btnAdd").textContent="⏳ Validating with Telegram…";
+  try{const me=await tg(token,"getMe");b.username=me.username||"";if(!name)b.name=me.first_name||b.name;log(`✅ Token valid — @${me.username} (${me.first_name})`,"ok");toast(`✅ Connected: @${me.username}`)}
+  catch(e){log(`⚠ Could not validate now (${e.message}) — bot saved anyway, press ▶ Start to retry.`,"warn");toast("⚠ Saved, but Telegram rejected the token: "+e.message)}
+  $("#btnAdd").disabled=false;$("#btnAdd").textContent="🚀 Add & Validate Bot";
+  S.bots.push(b);S.active=b.id;$("#newName").value="";$("#newToken").value="";save();renderAll();
+};
+/* Rules */
+$("#btnAddRule").onclick=()=>{
+  const b=activeBot();if(!b){toast("Add a bot first");return}
+  const trigger=$("#ruleTrigger").value.trim(),reply=$("#ruleReply").value.trim();
+  if(!trigger||!reply){toast("⚠️ Fill in both trigger and reply");return}
+  b.rules.push({id:uid(),type:$("#ruleType").value,trigger,reply,buttons:$("#ruleButtons").value.trim()});
+  $("#ruleTrigger").value="";$("#ruleReply").value="";$("#ruleButtons").value="";
+  save();renderAll();toast("🧩 Rule added! Test it in the Playground ↓");
+};
+/* Code + settings */
+$("#btnCodeExample").onclick=()=>{$("#codeEditor").value=CODE_EXAMPLE;toast("Example loaded — hit Save Code")};
+$("#btnSaveCode").onclick=()=>{const b=activeBot();if(!b)return;b.code=$("#codeEditor").value;b.settings.useCode=$("#useCode").checked;save();renderAll();toast("💾 Code saved for "+b.name)};
+$("#useCode").onchange=e=>{const b=activeBot();if(b){b.settings.useCode=e.target.checked;save()}};
+$("#btnSaveSettings").onclick=()=>{const b=activeBot();if(!b)return;Object.assign(b.settings,{start:$("#setStart").value,help:$("#setHelp").value,welcome:$("#setWelcome").value,fallback:$("#setFallback").value,echo:$("#setEcho").checked,welcomeOn:$("#setWelcomeOn").checked,builtins:$("#setBuiltins").checked});save();toast("💾 Settings saved for "+b.name)};
+/* Backup */
+$("#btnExport").onclick=()=>{download("telehost-backup.json",JSON.stringify(S,null,2),"application/json");toast("⬇️ Backup downloaded — keep it private (contains tokens!)")};
+$("#fileImport").onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{const d=JSON.parse(t);if(!Array.isArray(d.bots))throw 0;S=d;S.active=S.bots[0]?.id||null;save();renderAll();toast("✅ Backup imported: "+S.bots.length+" bot(s)")}catch(_){toast("❌ Invalid backup file")}})};
+$("#btnWipe").onclick=()=>{if(!confirm("Delete ALL bots, rules and tokens from this browser? This cannot be undone."))return;S.bots.forEach(b=>stopBot(b.id));localStorage.removeItem(LS);S={bots:[defaultBot("Demo Bot (no token needed)","",true)],active:null};S.active=S.bots[0].id;save();renderAll();pgReset();toast("🗑 Everything wiped. Fresh start!")};
+
+/* ---------- PLAYGROUND ---------- */
+function pgAdd(text,who){const d=document.createElement("div");d.className="msg "+who;d.textContent=text;$("#pgChat").appendChild(d);$("#pgChat").scrollTop=1e6}
+function pgReset(){$("#pgChat").innerHTML="";pgAdd("👋 Hi! I'm your test chat. Send /start — or tap a shortcut below. Everything here uses your selected bot's real rules, settings & JS code.","bot")}
+function pgSendText(t){
+  t=(t??$("#pgInput").value).trim();if(!t)return;$("#pgInput").value="";
+  pgAdd(t,"me");const b=activeBot();if(!b){pgAdd("⚠️ No bot selected. Add one above!","bot");return}
+  b.stats.msgs++;const out=[];
+  brain(b,{text:t,chatId:999001,user:{id:999001,first_name:"You",username:"you"},message:{text:t}},(x,btn)=>out.push([x,btn]));
+  setTimeout(()=>{if(!out.length)pgAdd("(no reply — no rule matched. Add a rule, a fallback reply, or enable Echo mode ⚙️)","bot");
+    out.forEach(([x,btn])=>{pgAdd(x+(btn?"\n\n🔘 "+btn.inline_keyboard.flat().map(i=>i.text+" → "+i.url).join("\n🔘 "):""),"bot");b.stats.replies++});
+    save();refreshKpis()},380);
+}
+$("#pgSend").onclick=()=>pgSendText();
+$("#pgInput").addEventListener("keydown",e=>{if(e.key==="Enter")pgSendText()});
+$$(".pgTry").forEach(b=>b.onclick=()=>pgSendText(b.textContent));
+
+/* ---------- TEMPLATES ---------- */
+const R=(type,trigger,reply,buttons="")=>({id:uid(),type,trigger,reply,buttons});
+const TEMPLATES=[
+ {ic:"🔁",name:"Echo Bot",tag:"BEGINNER",desc:"Repeats everything back. The classic first bot — great for testing your setup works.",apply:b=>{b.settings.echo=true;b.settings.fallback=""}},
+ {ic:"👋",name:"Welcome / Group Greeter",tag:"GROUPS",desc:"Greets new members automatically, shares group rules with /rules and links with /links.",apply:b=>{b.settings.welcomeOn=true;b.settings.welcome="👋 Welcome {name}! 🎉\nPlease read /rules and say hi!";b.rules.push(R("command","/rules","📜 Group Rules:\n1️⃣ Be kind\n2️⃣ No spam\n3️⃣ Stay on topic\n4️⃣ Have fun! 🎉"),R("command","/links","🔗 Useful links below:","🌐 Website | https://example.com"))}},
+ {ic:"🛍",name:"Shop / Store Bot",tag:"BUSINESS",desc:"Product catalog, pricing and order flow with buttons. Perfect for selling anything.",apply:b=>{b.settings.start="🛍 Welcome to our store, {name}!\n\nSend /catalog to browse, /price for pricing, /order to buy.";b.rules.push(R("command","/catalog","📦 Catalog:\n\n1️⃣ Basic Plan — $5\n2️⃣ Pro Plan — $15 ⭐\n3️⃣ Lifetime — $49\n\nSend /order to buy!"),R("command","/order","🧾 Tap below to place your order:","🛒 Order Now | https://example.com\n💬 Chat with Seller | https://t.me/telegram"),R("contains","delivery","🚚 Delivery takes 24-48h and is FREE worldwide!"))}},
+ {ic:"🎧",name:"Support / FAQ Bot",tag:"BUSINESS",desc:"Instant answers to common questions + handoff to a human. Cuts support work by 80%.",apply:b=>{b.settings.start="🎧 Support here, {name}! Ask me anything, or send /human for a real person.";b.rules.push(R("contains","refund","💸 Refunds are processed within 3-5 working days. Send /human with your order ID for help."),R("contains","password","🔐 Reset your password from the login page → 'Forgot password'. Check spam for the email!"),R("command","/human","🧑‍💻 Connecting you to a human… tap below:","💬 Talk to Support | https://t.me/telegram"));b.settings.fallback="🤔 I didn't quite get that. Try asking about: refund, password, price — or send /human."}},
+ {ic:"🎲",name:"Fun & Games Bot",tag:"FUN",desc:"Dice, coin flip, magic 8-ball and jokes — powered by the JS Code Lab. Crowd favourite.",apply:b=>{b.settings.useCode=true;b.code=`if (text === "/dice") reply("🎲 You rolled: " + (1 + Math.floor(Math.random()*6)));
+else if (text === "/coin") reply(Math.random() < .5 ? "🪙 Heads!" : "🪙 Tails!");
+else if (text === "/8ball") reply("🎱 " + ["Yes! ✅","No ❌","Maybe… 🤔","Definitely! 🔥","Ask later ⏳"][Math.floor(Math.random()*5)]);
+else if (text === "/joke") reply(["Why do programmers prefer dark mode? Because light attracts bugs! 🐛","I told my bot a joke about UDP… it never got it. 😅","There are only 10 types of people: those who understand binary and those who don't. 🤖"][Math.floor(Math.random()*3)]);
+else if (text === "/start") reply("🎲 Fun Bot ready! Try /dice /coin /8ball /joke");`;b.settings.help="🎲 /dice /coin /8ball /joke — have fun!"}},
+ {ic:"📢",name:"Channel / Broadcast Helper",tag:"CREATOR",desc:"Links hub + auto-answers for your channel audience. Grow and direct your community.",apply:b=>{b.settings.start="📢 Hey {name}! Welcome to our community hub 👇";b.rules.push(R("command","/socials","🌐 Find us everywhere:","▶️ YouTube | https://youtube.com\n📸 Instagram | https://instagram.com\n🐦 X (Twitter) | https://x.com"),R("contains","join","🎉 Join the main channel here:","📢 Join Channel | https://t.me/telegram"))}},
+ {ic:"🎓",name:"Quiz / Education Bot",tag:"LEARNING",desc:"Simple Q&A quiz flow using keyword rules. Edit the questions to make it yours.",apply:b=>{b.rules.push(R("command","/quiz","🎓 Quiz Time!\n\nQ1: What is the capital of France? 🇫🇷\n(Type your answer)"),R("exact","paris","✅ Correct! 🎉\n\nQ2: 7 × 8 = ?"),R("exact","56","✅ Correct again! 🏆 You're a star! Send /quiz to play again."));b.settings.start="🎓 Welcome {name}! Send /quiz to start learning!"}},
+ {ic:"🤖",name:"AI-Style Assistant (Smart Rules)",tag:"ADVANCED",desc:"Feels smart: greets by time of day, does math with /calc and understands many phrases via JS.",apply:b=>{b.settings.useCode=true;b.code=`const low = (text||"").toLowerCase();
+if (text === "/start") { const h = new Date().getHours(); reply((h<12?"🌅 Good morning":h<18?"☀️ Good afternoon":"🌙 Good evening") + " " + (user?.first_name||"") + "! I'm your assistant. Try /calc 12*8 or just chat."); }
+else if (text?.startsWith("/calc ")) { try { const e = text.slice(6).replace(/[^0-9+\\-*/.() %]/g,""); reply("🧮 " + e + " = " + Function("return ("+e+")")()); } catch(_) { reply("⚠️ Invalid expression"); } }
+else if (low.includes("thank")) reply("You're welcome! 😊");
+else if (low.includes("bye")) reply("Goodbye " + (user?.first_name||"") + "! 👋");
+else if (low.includes("your name")) reply("I'm hosted free on TeleHost ∞ 🤖");
+else if (low.includes("who made you") || low.includes("creator")) reply("I was built in minutes with TeleHost ∞ — free forever, no login!");`;}},
+ {ic:"🏪",name:"Local Business Bot",tag:"BUSINESS",desc:"Timings, location, menu/services and booking for shops, salons, tutors, clinics & more.",apply:b=>{b.rules.push(R("contains","timing","🕙 We're open Mon–Sat, 10 AM – 9 PM. Sunday: 11 AM – 6 PM."),R("contains","location","📍 Find us here:","🗺 Open in Maps | https://maps.google.com"),R("contains","book","📅 Book your slot below:","📅 Book Appointment | https://example.com"),R("contains","menu","📋 Today's menu/services:\n• Service A — ₹499\n• Service B — ₹999 ⭐\n• Service C — ₹1,499"));b.settings.start="🏪 Welcome, {name}! Ask me about: timing, location, menu — or type book to reserve."}}
+];
+$("#tplGrid").innerHTML=TEMPLATES.map((t,i)=>`<div class="tpl"><div class="ic">${t.ic}</div><span class="tag">${t.tag} • FREE</span><h3>${t.name}</h3><p>${t.desc}</p><button class="btn sm" onclick="applyTpl(${i})">✨ Apply to My Bot</button></div>`).join("");
+window.applyTpl=i=>{const b=activeBot();if(!b){toast("Add/select a bot first");return}TEMPLATES[i].apply(b);save();renderAll();toast(`✨ "${TEMPLATES[i].name}" applied to ${b.name}! Test it in the Playground ↓`);log(`🎨 Template "${TEMPLATES[i].name}" applied to [${b.name}]`,"ok");document.querySelector("#runner").scrollIntoView({behavior:"smooth"})};
+
+/* ---------- TOOLS ---------- */
+const toolToken=()=>($$(".toolToken")[0].value||$$(".toolToken")[1].value||activeBot()?.token||"").trim();
+$$(".toolToken").forEach(i=>i.addEventListener("input",()=>$$(".toolToken").forEach(o=>{if(o!==i)o.value=i.value})));
+function out(j){$("#toolOut").textContent=typeof j==="string"?j:JSON.stringify(j,null,2)}
+async function toolCall(fn){const t=toolToken();if(!t){toast("⚠️ Enter a bot token first (or select a bot with one)");return}out("⏳ Calling Telegram API…");try{out(await fn(t))}catch(e){out("❌ "+e.message)}}
+$("#btnGetMe").onclick=()=>toolCall(t=>tg(t,"getMe"));
+$("#btnUpdates").onclick=()=>toolCall(async t=>{const u=await tg(t,"getUpdates",{timeout:0,limit:20});out(u.length?u:"No updates yet. Send a message to your bot on Telegram first, then try again — chat IDs appear under message.chat.id");return $("#toolOut").textContent});
+$("#btnSendTest").onclick=()=>toolCall(async t=>{const c=$("#toolChat").value.trim(),m=$("#toolMsg").value.trim();if(!c||!m)throw new Error("Enter Chat ID and message");const r=await tg(t,"sendMessage",{chat_id:c,text:m});toast("✉️ Message sent!");return r});
+$("#btnHookInfo").onclick=()=>toolCall(t=>tg(t,"getWebhookInfo"));
+$("#btnHookSet").onclick=()=>toolCall(async t=>{const u=$("#toolHook").value.trim();if(!u.startsWith("https://"))throw new Error("Webhook URL must start with https://");return tg(t,"setWebhook",{url:u,drop_pending_updates:true})});
+$("#btnHookDel").onclick=()=>toolCall(t=>tg(t,"deleteWebhook",{drop_pending_updates:true}));
+
+/* ---------- DEPLOY GENERATOR ---------- */
+function pyStr(s){return JSON.stringify(String(s||""))}
+function genPython(b){
+  const cmds=b.rules.filter(r=>r.type==="command").map(r=>{
+    const fn=r.trigger.replace(/^\//,"").replace(/[^a-zA-Z0-9_]/g,"_")||"cmd";
+    const kb=parseButtons(r.buttons);const kbPy=kb?`, reply_markup=InlineKeyboardMarkup([${kb.inline_keyboard.map(row=>`[InlineKeyboardButton(${pyStr(row[0].text)}, url=${pyStr(row[0].url)})]`).join(", ")}])`:"";
+    return `\nasync def cmd_${fn}(u: Update, c: ContextTypes.DEFAULT_TYPE):\n    await u.message.reply_text(fill(${pyStr(r.reply)}, u)${kbPy})`}).join("");
+  const regs=b.rules.filter(r=>r.type==="command").map(r=>`    app.add_handler(CommandHandler(${pyStr(r.trigger.replace(/^\//,""))}, cmd_${r.trigger.replace(/^\//,"").replace(/[^a-zA-Z0-9_]/g,"_")}))`).join("\n");
+  const kw=b.rules.filter(r=>r.type!=="command").map(r=>{
+    const cond=r.type==="exact"?`low == ${pyStr(r.trigger.toLowerCase())}`:r.type==="startswith"?`low.startswith(${pyStr(r.trigger.toLowerCase())})`:r.type==="regex"?`re.search(${pyStr(r.trigger)}, text, re.I)`:`${pyStr(r.trigger.toLowerCase())} in low`;
+    const kb=parseButtons(r.buttons);const kbPy=kb?`, reply_markup=InlineKeyboardMarkup([${kb.inline_keyboard.map(row=>`[InlineKeyboardButton(${pyStr(row[0].text)}, url=${pyStr(row[0].url)})]`).join(", ")}])`:"";
+    return `    if ${cond}:\n        await u.message.reply_text(fill(${pyStr(r.reply)}, u)${kbPy}); return`}).join("\n");
+  return `# ============================================================
+#  ${b.name} — generated by TeleHost ∞ (Free Unlimited Bot Hosting)
+#  Run:  pip install -r requirements.txt  &&  python bot.py
+#  Set env var BOT_TOKEN to your @BotFather token. 24/7 ready.
+# ============================================================
+import os, re, logging
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Application, CommandHandler, MessageHandler, ContextTypes, filters
+
+logging.basicConfig(level=logging.INFO)
+TOKEN = os.environ["BOT_TOKEN"]
+
+def fill(t, u):
+    usr = u.effective_user
+    return (t.replace("{name}", usr.first_name or "friend")
+             .replace("{username}", "@" + usr.username if usr.username else "")
+             .replace("{chatId}", str(u.effective_chat.id))
+             .replace("{text}", u.message.text or ""))
+
+async def start(u: Update, c: ContextTypes.DEFAULT_TYPE):
+    await u.message.reply_text(fill(${pyStr(b.settings.start)}, u))
+
+async def help_cmd(u: Update, c: ContextTypes.DEFAULT_TYPE):
+    await u.message.reply_text(fill(${pyStr(b.settings.help)}, u))
+
+async def ping(u: Update, c: ContextTypes.DEFAULT_TYPE):
+    await u.message.reply_text("Pong! 🏓 Hosted free via TeleHost ∞")
+
+async def myid(u: Update, c: ContextTypes.DEFAULT_TYPE):
+    await u.message.reply_text(f"🆔 Chat ID: {u.effective_chat.id}\\n👤 Your ID: {u.effective_user.id}")
+${cmds}
+async def on_msg(u: Update, c: ContextTypes.DEFAULT_TYPE):
+    if u.message.new_chat_members:
+        ${b.settings.welcomeOn?`for m in u.message.new_chat_members:
+            await u.message.reply_text(${pyStr(b.settings.welcome)}.replace("{name}", m.first_name or "friend"))`:"pass"}
+        return
+    text = u.message.text or ""
+    low = text.lower().strip()
+${kw||"    pass"}
+${b.settings.echo?"    await u.message.reply_text(text); return":""}${b.settings.fallback?`\n    await u.message.reply_text(fill(${pyStr(b.settings.fallback)}, u))`:""}
+
+def main():
+    app = Application.builder().token(TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("help", help_cmd))
+    app.add_handler(CommandHandler("ping", ping))
+    app.add_handler(CommandHandler("id", myid))
+${regs}
+    app.add_handler(MessageHandler(filters.ALL, on_msg))
+    print("Bot is running 24/7… 🚀")
+    app.run_polling(drop_pending_updates=True)
+
+if __name__ == "__main__":
+    main()
+`;
+}
+function genNode(b){
+  const kw=b.rules.map(r=>{
+    const cond=r.type==="command"?`low === ${JSON.stringify(r.trigger.toLowerCase())} || low.startsWith(${JSON.stringify(r.trigger.toLowerCase()+" ")})`:r.type==="exact"?`low === ${JSON.stringify(r.trigger.toLowerCase())}`:r.type==="startswith"?`low.startsWith(${JSON.stringify(r.trigger.toLowerCase())})`:r.type==="regex"?`new RegExp(${JSON.stringify(r.trigger)},"i").test(text)`:`low.includes(${JSON.stringify(r.trigger.toLowerCase())})`;
+    const kb=parseButtons(r.buttons);
+    return `  if (${cond}) return bot.sendMessage(id, fill(${JSON.stringify(r.reply)}, m)${kb?`, {reply_markup:${JSON.stringify(kb)}}`:""});`}).join("\n");
+  return `// ============================================================
+//  ${b.name} — generated by TeleHost ∞ (Free Unlimited Bot Hosting)
+//  Run:  npm install  &&  node bot.js
+//  Set env var BOT_TOKEN to your @BotFather token. 24/7 ready.
+// ============================================================
+const TelegramBot = require("node-telegram-bot-api");
+const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+
+const fill = (t, m) => t.replaceAll("{name}", m.from?.first_name || "friend")
+  .replaceAll("{username}", m.from?.username ? "@" + m.from.username : "")
+  .replaceAll("{chatId}", m.chat.id).replaceAll("{text}", m.text || "");
+
+bot.on("message", (m) => {
+  const id = m.chat.id, text = m.text || "", low = text.toLowerCase().trim();
+  ${b.settings.welcomeOn?`if (m.new_chat_members) return m.new_chat_members.forEach(x => bot.sendMessage(id, ${JSON.stringify(b.settings.welcome)}.replace("{name}", x.first_name || "friend")));`:""}
+  if (low === "/start") return bot.sendMessage(id, fill(${JSON.stringify(b.settings.start)}, m));
+  if (low === "/help") return bot.sendMessage(id, fill(${JSON.stringify(b.settings.help)}, m));
+  if (low === "/ping") return bot.sendMessage(id, "Pong! 🏓 Hosted free via TeleHost ∞");
+  if (low === "/id") return bot.sendMessage(id, "🆔 Chat ID: " + id + "\\n👤 Your ID: " + m.from.id);
+${kw}
+${b.settings.echo?`  if (text) return bot.sendMessage(id, text);`:""}${b.settings.fallback?`\n  return bot.sendMessage(id, fill(${JSON.stringify(b.settings.fallback)}, m));`:""}
+});
+console.log("Bot is running 24/7… 🚀");
+`;
+}
+let lastGen={main:"",name:"bot.py",req:"",reqName:"requirements.txt",docker:""};
+$("#btnGenCode").onclick=()=>{
+  const b=activeBot();if(!b){toast("Add/select a bot first");return}
+  if($("#depLang").value==="py"){lastGen={main:genPython(b),name:"bot.py",req:"python-telegram-bot==21.6\n",reqName:"requirements.txt",docker:'FROM python:3.12-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\nCOPY . .\nCMD ["python","bot.py"]\n'}}
+  else{lastGen={main:genNode(b),name:"bot.js",req:JSON.stringify({name:"my-telegram-bot",version:"1.0.0",main:"bot.js",scripts:{start:"node bot.js"},dependencies:{"node-telegram-bot-api":"^0.66.0"}},null,2),reqName:"package.json",docker:'FROM node:20-slim\nWORKDIR /app\nCOPY package*.json ./\nRUN npm install --omit=dev\nCOPY . .\nCMD ["node","bot.js"]\n'}}
+  $("#depCode").value=lastGen.main;toast("⚙️ Code generated with your rules baked in! Download the files ↓");
+};
+$("#btnDlMain").onclick=()=>{if(!lastGen.main)$("#btnGenCode").click();download(lastGen.name,$("#depCode").value||lastGen.main)};
+$("#btnDlReq").onclick=()=>{if(!lastGen.req)$("#btnGenCode").click();download(lastGen.reqName,lastGen.req)};
+$("#btnDlDocker").onclick=()=>{if(!lastGen.docker)$("#btnGenCode").click();download("Dockerfile",lastGen.docker)};
+$("#btnCopyCode").onclick=async()=>{try{await navigator.clipboard.writeText($("#depCode").value);toast("📋 Code copied!")}catch(e){$("#depCode").select();document.execCommand("copy");toast("📋 Code copied!")}};
+
+/* ---------- INIT ---------- */
+renderAll();pgReset();
+log("🚀 TeleHost ∞ engine ready — 100% free, no login, unlimited bots.","ok");
+log("🔒 Privacy: tokens live only in this browser and talk only to api.telegram.org.","sys");
+log("💡 Tip: press ▶ Start on a bot, then message it on Telegram. Or test instantly in the Playground →","sys");
+if("serviceWorker"in navigator&&location.protocol==="https:"){/* PWA-ready (manifest linked); SW omitted to keep GitHub Pages simple */}
+</script>
+</body>
+</html>

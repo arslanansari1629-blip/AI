@@ -1,0 +1,12 @@
+{
+  "name": "TeleHost Infinity — Free Telegram Bot Hosting",
+  "short_name": "TeleHost ∞",
+  "description": "Host unlimited Telegram bots free forever. No login, no credit card.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#070418",
+  "theme_color": "#0b0620",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
